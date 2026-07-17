@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BRI Personal Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(135deg,#005BAA,#0099E5);
+
+min-height:100vh;
+padding:40px;
+
+}
+
+.container{
+
+max-width:1400px;
+margin:auto;
+
+}
+
+.header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+margin-bottom:30px;
+
+color:white;
+
+}
+
+.header h1{
+
+font-size:35px;
+font-weight:700;
+
+}
+
+.header p{
+
+opacity:.8;
+
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(300px,1fr));
+
+gap:25px;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.15);
+
+backdrop-filter:blur(20px);
+
+border-radius:20px;
+
+padding:25px;
+
+color:white;
+
+box-shadow:
+
+0 8px 25px rgba(0,0,0,.2);
+
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.title{
+
+font-size:18px;
+
+font-weight:600;
+
+margin-bottom:20px;
+
+}
+
+.big{
+
+font-size:55px;
+
+font-weight:bold;
+
+text-align:center;
+
+}
+
+.small{
+
+text-align:center;
+
+opacity:.8;
+
+margin-top:10px;
+
+}
+
+.flex{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-top:25px;
+
+}
+
+.timeBox{
+
+width:23%;
+
+background:rgba(255,255,255,.1);
+
+border-radius:15px;
+
+padding:15px;
+
+text-align:center;
+
+}
+
+.timeBox h2{
+
+font-size:35px;
+
+}
+
+.timeBox span{
+
+opacity:.7;
+
+font-size:14px;
+
+}
+
+.progress{
+
+height:18px;
+
+background:rgba(255,255,255,.2);
+
+border-radius:30px;
+
+overflow:hidden;
+
+margin-top:20px;
+
+}
+
+.progressBar{
+
+width:0%;
+
+height:100%;
+
+background:
+
+linear-gradient(90deg,#FFE600,#00FF99);
+
+transition:1s;
+
+}
+
+.list{
+
+margin-top:15px;
+
+}
+
+.item{
+
+display:flex;
+
+justify-content:space-between;
+
+margin:12px 0;
+
+font-size:15px;
+
+}
+
+.salary{
+
+font-size:45px;
+
+font-weight:700;
+
+text-align:center;
+
+margin-top:20px;
+
+}
+
+.clock{
+
+font-size:28px;
+
+text-align:center;
+
+font-weight:600;
+
+margin-top:15px;
+
+}
+
+.date{
+
+text-align:center;
+
+margin-top:10px;
+
+opacity:.8;
+
+}
+
+.badge{
+
+display:inline-block;
+
+background:#FFD400;
+
+color:#003366;
+
+padding:8px 18px;
+
+border-radius:50px;
+
+font-weight:600;
+
+margin-top:15px;
+
+}
+
+.footer{
+
+margin-top:35px;
+
+text-align:center;
+
+color:white;
+
+opacity:.8;
+
+}
+
+@media(max-width:768px){
+
+.flex{
+
+flex-wrap:wrap;
+
+gap:10px;
+
+}
+
+.timeBox{
+
+width:48%;
+
+}
+
+.big{
+
+font-size:40px;
+
+}
+
+.salary{
+
+font-size:35px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<div>
+
+<h1>🏦 BRI Personal Dashboard</h1>
+
+<p>Recovery Assistant | Contract Monitoring</p>
+
+</div>
+
+<div>
+
+<div class="badge">
+
+Contract Active
+
+</div>
+
+</div>
+
+</div>
+
+<div class="grid">
+
+<!-- CONTRACT -->
+
+<div class="card">
+
+<div class="title">
+
+📅 Contract Countdown
+
+</div>
+
+<div class="big" id="contractDays">
+
+000
+
+</div>
+
+<div class="small">
+
+Days Remaining
+
+</div>
+
+<div class="flex">
+
+<div class="timeBox">
+
+<h2 id="cHour">00</h2>
+
+<span>Hours</span>
+
+</div>
+
+<div class="timeBox">
+
+<h2 id="cMinute">00</h2>
+
+<span>Minutes</span>
+
+</div>
+
+<div class="timeBox">
+
+<h2 id="cSecond">00</h2>
+
+<span>Seconds</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- PAYDAY -->
+
+<div class="card">
+
+<div class="title">
+
+💰 Next Payday
+
+</div>
+
+<div class="big" id="paydayDays">
+
+00
+
+</div>
+
+<div class="small">
+
+Days Until Salary
+
+</div>
+
+<div class="flex">
+
+<div class="timeBox">
+
+<h2 id="pHour">00</h2>
+
+<span>Hours</span>
+
+</div>
+
+<div class="timeBox">
+
+<h2 id="pMinute">00</h2>
+
+<span>Minutes</span>
+
+</div>
+
+<div class="timeBox">
+
+<h2 id="pSecond">00</h2>
+
+<span>Seconds</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- TODAY -->
+
+<div class="card">
+
+<div class="title">
+
+🕒 Today
+
+</div>
+
+<div class="clock" id="clock">
+
+00:00:00
+
+</div>
+
+<div class="date" id="today">
+
+Loading...
+
+</div>
+
+</div>
+
+<!-- PROGRESS -->
+
+<div class="card">
+
+<div class="title">
+
+📈 Contract Progress
+
+</div>
+
+<div class="salary" id="progressText">
+
+0%
+
+</div>
+
+<div class="progress">
+
+<div class="progressBar" id="progressBar">
+
+</div>
+
+</div>
+
+<div class="list">
+
+<div class="item">
+
+<span>Started</span>
+
+<span>15 Jul 2026</span>
+
+</div>
+
+<div class="item">
+
+<span>Finish</span>
+
+<span>14 Jul 2027</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- SALARY -->
+
+<div class="card">
+
+<div class="title">
+
+💵 Monthly Salary
+
+</div>
+
+<div class="salary">
+
+Rp5.400.000
+
+</div>
+
+<div class="small">
+
+Before Tax
+
+</div>
+
+</div>
+
+<!-- WORKING DAYS -->
+
+<div class="card">
+
+<div class="title">
+
+💼 Working Days Remaining
+
+</div>
+
+<div class="salary"
+
+id="workingDays">
+
+000
+
+</div>
+
+<div class="small">
+
+Monday - Friday
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+Made with ❤️ by Mike
+
+</div>
+
+</div>
+
+<!-- JAVASCRIPT PART 2 DISINI -->
+
+</body>
+
+</html>
+<script>
+
+const contractStart = new Date("2026-07-15T00:00:00");
+const contractEnd = new Date("2027-07-14T23:59:59");
+
+function updateClock(){
+
+    const now = new Date();
+
+    const dayName = [
+        "Sunday","Monday","Tuesday","Wednesday",
+        "Thursday","Friday","Saturday"
+    ];
+
+    const monthName = [
+        "January","February","March","April",
+        "May","June","July","August",
+        "September","October","November","December"
+    ];
+
+    let hh = String(now.getHours()).padStart(2,"0");
+    let mm = String(now.getMinutes()).padStart(2,"0");
+    let ss = String(now.getSeconds()).padStart(2,"0");
+
+    document.getElementById("clock").innerHTML =
+    hh + ":" + mm + ":" + ss;
+
+    document.getElementById("today").innerHTML =
+    dayName[now.getDay()] + ", " +
+    now.getDate() + " " +
+    monthName[now.getMonth()] + " " +
+    now.getFullYear();
+
+}
+
+function updateContract(){
+
+    const now = new Date();
+
+    let diff = contractEnd - now;
+
+    if(diff < 0){
+
+        document.getElementById("contractDays").innerHTML="DONE";
+
+        return;
+
+    }
+
+    let days =
+    Math.floor(diff / (1000*60*60*24));
+
+    let hours =
+    Math.floor(diff / (1000*60*60)%24);
+
+    let minutes =
+    Math.floor(diff / (1000*60)%60);
+
+    let seconds =
+    Math.floor(diff/1000%60);
+
+    document.getElementById("contractDays").innerHTML = days;
+    document.getElementById("cHour").innerHTML = hours;
+    document.getElementById("cMinute").innerHTML = minutes;
+    document.getElementById("cSecond").innerHTML = seconds;
+
+    let total = contractEnd-contractStart;
+    let passed = now-contractStart;
+
+    let percent = (passed/total)*100;
+
+    if(percent<0) percent=0;
+    if(percent>100) percent=100;
+
+    document.getElementById("progressText").innerHTML =
+    percent.toFixed(2)+"%";
+
+    document.getElementById("progressBar").style.width =
+    percent+"%";
+
+}
+
+function paydayCountdown(){
+
+    const now = new Date();
+
+    let payday =
+    new Date(now.getFullYear(),now.getMonth(),24,0,0,0);
+
+    if(now>payday){
+
+        payday =
+        new Date(now.getFullYear(),now.getMonth()+1,24,0,0,0);
+
+    }
+
+    let diff = payday-now;
+
+    let days =
+    Math.floor(diff/(1000*60*60*24));
+
+    let hours =
+    Math.floor(diff/(1000*60*60)%24);
+
+    let minutes =
+    Math.floor(diff/(1000*60)%60);
+
+    let seconds =
+    Math.floor(diff/1000%60);
+
+    document.getElementById("paydayDays").innerHTML = days;
+    document.getElementById("pHour").innerHTML = hours;
+    document.getElementById("pMinute").innerHTML = minutes;
+    document.getElementById("pSecond").innerHTML = seconds;
+
+}
+
+function workingDays(){
+
+    const now = new Date();
+
+    let count = 0;
+
+    let date = new Date(now);
+
+    while(date<=contractEnd){
+
+        let day = date.getDay();
+
+        if(day!=0 && day!=6){
+
+            count++;
+
+        }
+
+        date.setDate(date.getDate()+1);
+
+    }
+
+    document.getElementById("workingDays").innerHTML =
+    count;
+
+}
+
+function updateAll(){
+
+    updateClock();
+
+    updateContract();
+
+    paydayCountdown();
+
+    workingDays();
+
+}
+
+updateAll();
+
+setInterval(updateAll,1000);
+
+</script>
